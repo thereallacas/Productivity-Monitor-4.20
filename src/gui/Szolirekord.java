@@ -31,10 +31,10 @@ public class Szolirekord {
 		this.perc = perc;
 	}
 	public int getFizetendo() {
-		return getPerc()*MAGIC.UNIT;
+		return getPerc()*MANDARIN.UNIT;
 	}
 	public void setFizetendo(int fizetendo) {
-		this.fizetendo = getPerc()*MAGIC.UNIT;
+		this.fizetendo = getPerc()*MANDARIN.UNIT;
 	}
 	
 	
