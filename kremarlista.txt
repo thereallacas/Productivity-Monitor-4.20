@@ -1,4 +1,4 @@
 arlista
-kave	80
-forrocsoki	90
-cappucino	600
+fogyikrém	200
+napozokrém	350
+szolikrém	200

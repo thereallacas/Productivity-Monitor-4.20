@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
@@ -53,11 +52,11 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		uditoInputPanel = new TermekInputPanel(uditomodell.getArlista());
 		kremInputPanel = new TermekInputPanel(kremmodell.getArlista());
 		
-		add(makeMenuBar());
+		add(makeMenuBar(),BorderLayout.NORTH);
 		add(pane, BorderLayout.CENTER);
 		pane.add("Szolárium", makeTab(szoliInputPanel, szoli, szolitablamodell));
 		pane.add("Kávé", makeTab(kaveInputPanel, kave, kavemodell));
-		pane.add("Bérlet", makeTab(kremInputPanel, krem, berletmodell));
+		pane.add("Bérlet", makeTab(berletInputPanel, berlet, berletmodell));
 		pane.add("Krém", makeTab(kremInputPanel, krem, kremmodell));
 		pane.add("Üdítő", makeTab(uditoInputPanel, udito, uditomodell));
 		addFunctiontoPanel(szoliInputPanel, new szoliFelveszActionListener());
@@ -85,23 +84,19 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		JMenu fileMenu = new JMenu("File");
 		JMenuItem startTheDay = new JMenuItem("Start the day");
 		startTheDay.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Serializer serializer = new Serializer();
 				serializer.write(szolitablamodell.szolirekordok);
 			}
-
 		});
 		JMenuItem finishTheDay = new JMenuItem("Finish the day");
 		finishTheDay.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Serializer serializer = new Serializer();
 				serializer.write(szolitablamodell.szolirekordok);
 			}
-
 		});
 		mainMenu.add(startTheDay);
 		mainMenu.add(finishTheDay);

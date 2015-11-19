@@ -1,4 +1,4 @@
 arlista
-kave	80
-forrocsoki	90
-cappucino	600
+kólavíz	200
+chappvíz	300
+bubis csapvíz	250

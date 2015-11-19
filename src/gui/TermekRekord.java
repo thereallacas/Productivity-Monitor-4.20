@@ -5,6 +5,7 @@ public class TermekRekord extends Termek{
 	private String termeknev;
 	private int egysegar;
 	private int fizetett;
+	public static int attributumSzam = 4;
 	
 	public TermekRekord(String time, String termeknev, int egysegar, int fizetett){
 		super(termeknev, egysegar);

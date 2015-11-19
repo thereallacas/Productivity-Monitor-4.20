@@ -34,7 +34,7 @@ public class SzoliTablaModell extends AbstractTableModel{
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 7;
+		return SzoliRekord.attributumSzam;
 	}
 
 	@Override

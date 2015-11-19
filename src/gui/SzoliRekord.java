@@ -8,12 +8,14 @@ public class SzoliRekord {
 	private boolean berlet;
 	private int fizetendo;
 	private int fizetett;
+	public static int attributumSzam = 7;
 	
 	public SzoliRekord(String time, int gep, String f_n, int perc,
 			boolean berlet, int fizetendo, int fizetett){
 		setTime(time);setGep(gep);setF_n(f_n);setPerc(perc);setBerlet(berlet);
 		setFizetendo(fizetendo);setFizetett(fizetett);
 	}
+	
 	public String getTime(){
 		return time;
 	}
