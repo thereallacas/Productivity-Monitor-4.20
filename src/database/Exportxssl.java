@@ -5,7 +5,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
 
-public class export{
+public class Exportxssl{
 	enum HEADER_INDICES {
 		TIME(0), GEP(1), F_N(2), PERC(3), BERLET(4), ADOTT(5);
 		private int value;    

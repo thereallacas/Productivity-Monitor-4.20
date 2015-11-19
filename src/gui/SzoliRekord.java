@@ -1,19 +1,25 @@
 package gui;
 
-public class Szolirekord {
+public class SzoliRekord {
+	private String time;
 	private int gep;
 	private String f_n;
-	private boolean berlet;
 	private int perc;
+	private boolean berlet;
 	private int fizetendo;
 	private int fizetett;
 	
-	
-	//TODO TODO DODO
-	public Szolirekord(int perc){
-		setFizetendo(perc);
+	public SzoliRekord(String time, int gep, String f_n, int perc,
+			boolean berlet, int fizetendo, int fizetett){
+		setTime(time);setGep(gep);setF_n(f_n);setPerc(perc);setBerlet(berlet);
+		setFizetendo(fizetendo);setFizetett(fizetett);
 	}
-	
+	public String getTime(){
+		return time;
+	}
+	public void setTime(String value) {
+		this.time = value;
+	}
 	public int getGep() {
 		return gep;
 	}
@@ -44,6 +50,10 @@ public class Szolirekord {
 	public void setFizetendo(int fizetendo) {
 		this.fizetendo = getPerc()*MANDARIN.UNIT;
 	}
-	
-	
+	public int getFizetett() {
+		return fizetett;
+	}
+	public void setFizetett(int fizetett){
+		this.fizetett = fizetett;
+	}	
 }

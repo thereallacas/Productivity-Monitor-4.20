@@ -1,0 +1,4 @@
+arlista
+kave	80
+forrocsoki	90
+cappucino	600
