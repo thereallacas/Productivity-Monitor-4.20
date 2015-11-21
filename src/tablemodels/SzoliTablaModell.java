@@ -20,7 +20,11 @@ public class SzoliTablaModell extends AbstractTableModel{
 		put(5,"FIZETENDO");
 		put(6,"FIZETETT");
 	}};
-
+	
+	public List<SzoliRekord> getSzoliRekordok(){
+		return szolirekordok;
+	}
+	
 	public String getColumnName(int columnIndex) {
 		return columns.get(columnIndex);
 	}
@@ -61,20 +65,19 @@ public class SzoliTablaModell extends AbstractTableModel{
 		SzoliRekord purchase = szolirekordok.get(rowIndex);
 		switch(columns.get(columnIndex)) {
 		case "TIME": purchase.setTime((String)value); break;
-		case "GEP": purchase.setGep((int)value); break;
+		case "GEP": purchase.setGep((String)value); break;
 		case "F/N": purchase.setF_n((String)value); break;
 		case "PERC": purchase.setPerc((int)value); break;
 		case "BERLET": purchase.setBerlet((boolean)value); break;
-		case "FIZETENDO": purchase.setFizetendo((int)value); break;
-		case "FIZETETT": purchase.setFizetett((int)value); break;
+		case "FIZETENDO": purchase.setFizetendo((String)value); break;
+		case "FIZETETT": purchase.setFizetett((String)value); break;
 		}
 	}
 
-	public void addSzoliRekord(String time, int gep, String f_n, 
-			int perc, boolean berlet, int fizetendo, int fizetett) { 
-		SzoliRekord newpurchase = new SzoliRekord(time,gep,f_n,perc,berlet,fizetendo,fizetett);
+	public void addTermekRekord(String time, String gep, String f_n, 
+			int perc, boolean berlet, String fizetendo, String string) { 
+		SzoliRekord newpurchase = new SzoliRekord(time,gep,f_n,perc,berlet,fizetendo,string);
 		szolirekordok.add(newpurchase);
 		fireTableRowsInserted(getRowCount()-1, getRowCount()-1);
 	}
-
 }

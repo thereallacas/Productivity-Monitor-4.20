@@ -1,4 +1,6 @@
 arlista
-kólavíz	200
-chappvíz	300
-bubis csapvíz	250
+Naturaqua(ízesített)	190
+Naturaqua	170
+Nestea	250
+Cappy	250
+Szénsavas üdítők	250

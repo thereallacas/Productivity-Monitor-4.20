@@ -1,4 +1,6 @@
 arlista
-fogyikrém	200
-napozokrém	350
-szolikrém	200
+Australian Gold (kicsi)	610
+Australian Gold (nagy)	3700
+Cheeky Brown	4550
+Taboo kicsi	390
+Taboo nagy	3550

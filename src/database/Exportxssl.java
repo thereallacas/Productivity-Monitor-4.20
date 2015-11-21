@@ -40,9 +40,6 @@ public class Exportxssl{
 		BERLET.setCellValue("BERLET");
 		ADOTT.setCellValue("ADOTT");
 
-
-
-
 		try
 		{
 			//Write the workbook in file system

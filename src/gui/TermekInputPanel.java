@@ -3,7 +3,10 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,13 +24,9 @@ import javax.swing.JTextField;
 
 import tablemodels.TermekTablaModell;
 
-public class TermekInputPanel extends JPanel{
-	//Integer[] gepek = new Integer[]{1,2,3,4,5};
-	
-	private boolean feminist=true;
-	private HashMap<String, Integer> arlista=new HashMap<>();
-	private JComboBox<String> kaveComboBox = new JComboBox<>();
-	private JTextField fizetendo = new JTextField("0", MANDARIN.PAYMENTCOLUMN);
+public class TermekInputPanel extends JPanel implements InputPanel{
+	private HashMap<String, String> arlista=new HashMap<>();
+	private JComboBox<String> termekComboBox = new JComboBox<>();
 	private JTextField fizetett;
 	private JButton felvesz = new JButton("Felvesz");
 	
@@ -35,31 +34,56 @@ public class TermekInputPanel extends JPanel{
 		felvesz.addActionListener(e);
 	}
 	
-	String getkave(){
-		return (String) kaveComboBox.getSelectedItem();
+	public String gettermek(){
+		return (String) termekComboBox.getSelectedItem();
 	}
 	
-	int getfizetendo(){
-		return arlista.get((String)(kaveComboBox.getSelectedItem()));
+	public String getfizetendo(){
+		return arlista.get((String)(termekComboBox.getSelectedItem()));
 	}
 	
-	int getfizetett(){
-		return new Integer(fizetett.getText());
+	public String getfizetett(){
+		return fizetett.getText();
+	}
+	
+	public String fizetettDefault(){
+		return (getfizetendo());
 	}
 
 	public TermekInputPanel(List<Termek> arlista) {
 		super();
+		
 		for(Termek i:arlista){
-			kaveComboBox.addItem(i.termeknev);
+			termekComboBox.addItem(i.termeknev);
 			this.arlista.put(i.termeknev, i.egysegar);
 		}
-		fizetett = new JTextField(Integer.toString(getfizetendo()),MANDARIN.PAYMENTCOLUMN);
+		fizetett = new JTextField(fizetettDefault(),MANDARIN.PAYMENTCOLUMN);
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		setBackground(MANDARIN.ORANGE);
-		Component[] tomb = {kaveComboBox, fizetett, felvesz};
+		setBackground(MANDARIN.InputPanelColor);
+		Component[] tomb = {termekComboBox, fizetett, felvesz};
 		setMaximumSize(new Dimension(MANDARIN.APPSIZE.height, MANDARIN.APPSIZE.width));
+		termekComboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				fizetett.setText(fizetettDefault());
+				
+			}
+		});
 		for(Component i:tomb)
 			add(i);
-		setBackground(MANDARIN.ORANGE);
 	}
+
+	@Override
+	public JButton getButton() {
+		return felvesz;
+	}
+
+	@Override
+	public JComboBox<String> getJComboBox() {
+		return termekComboBox;
+	}
+	
+	
+	
 }

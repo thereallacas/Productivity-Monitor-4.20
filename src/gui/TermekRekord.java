@@ -1,15 +1,20 @@
 package gui;
 
-public class TermekRekord extends Termek{
+import java.io.Serializable;
+
+public class TermekRekord implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1480075798550735050L;
 	private String time;
 	private String termeknev;
-	private int egysegar;
-	private int fizetett;
+	private String egysegar;
+	private String fizetett;
 	public static int attributumSzam = 4;
 	
-	public TermekRekord(String time, String termeknev, int egysegar, int fizetett){
-		super(termeknev, egysegar);
-		setTime(time);setTermeknev(termeknev);setFizetett(fizetett);
+	public TermekRekord(String time, String termeknev, String egysegar, String fizetett){
+		setTime(time);setTermeknev(termeknev); setEgysegar(egysegar);setFizetett(fizetett);
 	}
 	
 	public String getTime() {
@@ -28,19 +33,19 @@ public class TermekRekord extends Termek{
 		this.termeknev = termeknev;
 	}
 
-	public int getEgysegar() {
+	public String getEgysegar() {
 		return egysegar;
 	}
 
-	public void setEgysegar(int fizetendo) {
+	public void setEgysegar(String fizetendo) {
 		this.egysegar = fizetendo;
 	}
 
-	public int getFizetett() {
+	public String getFizetett() {
 		return fizetett;
 	}
 
-	public void setFizetett(int fizetett) {
+	public void setFizetett(String fizetett) {
 		this.fizetett = fizetett;
 	}
 	

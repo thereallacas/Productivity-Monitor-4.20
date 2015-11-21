@@ -1,11 +1,10 @@
 package gui;
 
 public class Termek {
-	String termeknev;
-	int egysegar;
-	public Termek(String termeknev, int egysegar){
-		this.termeknev = termeknev;
-		this.egysegar = egysegar;
+	public Termek(String termeknev, String egysegar){
+	this.termeknev = termeknev;
+	this.egysegar=egysegar;
 	}
-	
+	public String termeknev;
+	public String egysegar;
 }

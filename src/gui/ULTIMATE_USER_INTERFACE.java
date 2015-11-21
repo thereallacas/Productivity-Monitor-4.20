@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
+import database.Exportxssl;
 import database.Serializer;
 import tablemodels.SzoliTablaModell;
 import tablemodels.TermekTablaModell;
@@ -23,7 +24,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 	private TermekTablaModell kremmodell;
 	private SzoliTablaModell szolitablamodell;
 
-	JTabbedPane pane = new JTabbedPane();
+	private JTabbedPane pane = new JTabbedPane();
 
 	private SzoliInputPanel szoliInputPanel;
 	private TermekInputPanel kaveInputPanel;
@@ -59,18 +60,23 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		pane.add("Bérlet", makeTab(berletInputPanel, berlet, berletmodell));
 		pane.add("Krém", makeTab(kremInputPanel, krem, kremmodell));
 		pane.add("Üdítő", makeTab(uditoInputPanel, udito, uditomodell));
-		addFunctiontoPanel(szoliInputPanel, new szoliFelveszActionListener());
+		addFunctiontoPanelButton(szoliInputPanel, new szoliFelveszActionListener());
+		addFunctiontoPanelButton(berletInputPanel, new termekFelveszActionListener(berletmodell,berletInputPanel));
+		addFunctiontoPanelButton(kaveInputPanel, new termekFelveszActionListener(kavemodell,kaveInputPanel));
+		addFunctiontoPanelButton(kremInputPanel, new termekFelveszActionListener(kremmodell, kremInputPanel));
+		addFunctiontoPanelButton(uditoInputPanel, new termekFelveszActionListener(uditomodell, uditoInputPanel));	
 	}
 
-	public void addFunctiontoPanel(JPanel inputpanel, ActionListener e){
-		szoliInputPanel.addListener(e);
+	public void addFunctiontoPanelButton(InputPanel inputpanel, ActionListener e){
+		inputpanel.getButton().addActionListener(e);
 	}
 
 	protected JComponent makeTab(JPanel inputpanel, JTable table, AbstractTableModel tablemodell) {
 		JPanel panel = new JPanel(true);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setBackground(MANDARIN.ORANGE);
+		panel.setBackground(MANDARIN.DARKGREEN);
 		table = new JTable(tablemodell);
+		table.setBackground(MANDARIN.ORANGE);
 		table.setFillsViewportHeight(true);
 		JScrollPane s = new JScrollPane(table); 
 		panel.add(inputpanel);
@@ -80,42 +86,55 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 
 	public JComponent makeMenuBar(){
 		JMenuBar menuBar = new JMenuBar();
-		JMenu mainMenu = new JMenu("Main");
 		JMenu fileMenu = new JMenu("File");
-		JMenuItem startTheDay = new JMenuItem("Start the day");
+		JMenu open = new JMenu("Open");
+		JMenuItem startTheDay = new JMenuItem("Save");
 		startTheDay.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Serializer serializer = new Serializer();
-				serializer.write(szolitablamodell.szolirekordok);
-			}
+				try {
+					serializer.writeszolirekordok(szolitablamodell.getSzoliRekordok(), "szoli");
+				
+				serializer.writetermekrekordok(kavemodell.getTermekRekordok(), "kávé");
+				serializer.writetermekrekordok(berletmodell.getTermekRekordok(), "bérlet");
+				serializer.writetermekrekordok(uditomodell.getTermekRekordok(), "udito");
+				serializer.writetermekrekordok(kremmodell.getTermekRekordok(), "krem");
+				} catch (IOException e1) {
+					System.out.println("Hiba a mentés során");
+					e1.printStackTrace();
+					
+				}
+				
+				}
 		});
-		JMenuItem finishTheDay = new JMenuItem("Finish the day");
+		JMenuItem finishTheDay = new JMenuItem("Export to Excel");
 		finishTheDay.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Serializer serializer = new Serializer();
-				serializer.write(szolitablamodell.szolirekordok);
+				Exportxssl exporter = new Exportxssl();
 			}
 		});
-		mainMenu.add(startTheDay);
-		mainMenu.add(finishTheDay);
-
-		menuBar.add(mainMenu);
+		fileMenu.add(startTheDay);
+		fileMenu.add(finishTheDay);
 		menuBar.add(fileMenu);
-
 		return menuBar;
 	}
 
+	public Object[] getData(){
+		 Object[] objs = {szolitablamodell, kavemodell, berletmodell, uditomodell, kremmodell};
+		 return objs;
+	}
+	
 	public class szoliFelveszActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String am = (gcalendar.get(Calendar.AM_PM)==0) ? "AM" : "PM";
 			String timeString = String.valueOf(gcalendar.get(Calendar.HOUR)+":"
 					+gcalendar.get(Calendar.MINUTE) +" "+ am);
-			szolitablamodell.addSzoliRekord(
+			szolitablamodell.addTermekRekord(
 					timeString,
-					szoliInputPanel.getgep(), 
+					szoliInputPanel.gettermek(), 
 					szoliInputPanel.getf_n(),
 					szoliInputPanel.getperc(),
 					szoliInputPanel.isberlet(),
@@ -124,19 +143,23 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		}
 	}
 
-	public class kaveFelveszActionListener implements ActionListener{
-
+	public class termekFelveszActionListener implements ActionListener{
+		private InputPanel panel;
+		private TermekTablaModell model;
+		public termekFelveszActionListener(TermekTablaModell model, TermekInputPanel p) {
+			panel = p;
+			this.model = model;
+		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String am = (gcalendar.get(Calendar.AM_PM)==0) ? "AM" : "PM";
 			String timeString = String.valueOf(gcalendar.get(Calendar.HOUR)+":"
 					+gcalendar.get(Calendar.MINUTE) +" "+ am);
-			kavemodell.addTermekRekord(timeString,
-					kaveInputPanel.getkave(),
-					kaveInputPanel.getfizetendo(),
-					kaveInputPanel.getfizetett());
+			model.addTermekRekord(timeString,
+					panel.gettermek(),
+					panel.getfizetendo(),
+					panel.getfizetett());
 		}
-
 	}
 
 	public void createandShowGui(){

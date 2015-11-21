@@ -1,4 +1,7 @@
 arlista
-kave	80
-forrocsoki	90
-cappucino	600
+Kávé	70
+Hosszú kávé	90
+Kávé+tej	90
+Cappucino	100
+Csokis cappucino	120
+Forró csoki	120
