@@ -16,7 +16,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
-import database.Exportxssl;
+import database.Exportxlsx;
 import database.Serializer;
 import datatypes.recordtypes.*;
 import inputpanels.InputPanel;
@@ -167,12 +167,12 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 	 * It also adds functions to the menu items, so the code is a little dense.
 	 * The Menu has 3 options: Open a save file ({@link database.Serializer}), 
 	 * Save the current state of the database  ({@link database.Serializer})
-	 * and export the database in Excel ({@link database.Exportxssl}). 
+	 * and export the database in Excel ({@link database.Exportxlsx}). 
 	 * Each menu items is supported with an ActionListener which provides 
 	 * the above mentioned functionalities.
 	 * @return the jComponent which can be added to the User Interface (JFrame)
 	 * @see database.Serializer
-	 * @see database.Exportxssl
+	 * @see database.Exportxlsx
 	 */
 	public JComponent makeMenuBar(){
 		JMenuBar menuBar = new JMenuBar();
@@ -260,7 +260,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int retval = fc.showSaveDialog(save);
 				if (retval==JFileChooser.APPROVE_OPTION){
-					Exportxssl exporter = new Exportxssl();
+					Exportxlsx exporter = new Exportxlsx();
 					File place = fc.getCurrentDirectory();
 					filename=fc.getSelectedFile().getName();
 						List<List<? extends Record>> sv = new ArrayList<List<? extends Record>>();

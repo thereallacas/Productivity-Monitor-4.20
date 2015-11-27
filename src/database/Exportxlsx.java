@@ -22,7 +22,7 @@ import datatypes.recordtypes.TermekRekord;
  * it uses the apache poi library for he various method
  * calls.
  */
-public class Exportxssl{
+public class Exportxlsx{
 
 	/**
 	 * Provides easier handling of xlsx table indices by
