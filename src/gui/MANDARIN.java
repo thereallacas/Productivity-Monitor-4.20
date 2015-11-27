@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.color.ColorSpace;
 import java.awt.*;
 
 public class MANDARIN {

@@ -1,8 +1,6 @@
 package application;
 
 import java.io.IOException;
-
-import database.Serializer;
 import gui.MANDARIN;
 import gui.ULTIMATE_USER_INTERFACE;
 

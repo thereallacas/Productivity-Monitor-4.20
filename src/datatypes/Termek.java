@@ -1,4 +1,4 @@
-package gui;
+package datatypes;
 
 public class Termek {
 	public Termek(String termeknev, String egysegar){

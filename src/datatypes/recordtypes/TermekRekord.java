@@ -1,15 +1,15 @@
-package gui;
+package datatypes.recordtypes;
 
 import java.io.Serializable;
 
-public class TermekRekord implements Serializable{
+public class TermekRekord extends Record implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1480075798550735050L;
 	private String time;
 	private String termeknev;
-	private String egysegar;
+	private String fizetendo;
 	private String fizetett;
 	public static int attributumSzam = 4;
 	
@@ -34,11 +34,11 @@ public class TermekRekord implements Serializable{
 	}
 
 	public String getEgysegar() {
-		return egysegar;
+		return fizetendo;
 	}
 
 	public void setEgysegar(String fizetendo) {
-		this.egysegar = fizetendo;
+		this.fizetendo = fizetendo;
 	}
 
 	public String getFizetett() {

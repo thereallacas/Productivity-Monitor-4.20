@@ -1,8 +1,8 @@
-package gui;
+package datatypes.recordtypes;
 
 import java.io.Serializable;
 
-public class SzoliRekord implements Serializable{
+public class SzoliRekord extends Record implements Serializable{
 	/**
 	 * 
 	 */

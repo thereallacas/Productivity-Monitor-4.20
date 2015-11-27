@@ -3,21 +3,30 @@ package gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-
 import database.Exportxssl;
 import database.Serializer;
+import datatypes.recordtypes.*;
+import inputpanels.InputPanel;
+import inputpanels.SzoliInputPanel;
+import inputpanels.TermekInputPanel;
 import tablemodels.SzoliTablaModell;
+import tablemodels.TablaModell;
 import tablemodels.TermekTablaModell;
 
 public class ULTIMATE_USER_INTERFACE extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TermekTablaModell berletmodell;
 	private TermekTablaModell kavemodell;
 	private TermekTablaModell uditomodell;
@@ -52,7 +61,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		berletInputPanel = new TermekInputPanel(berletmodell.getArlista());
 		uditoInputPanel = new TermekInputPanel(uditomodell.getArlista());
 		kremInputPanel = new TermekInputPanel(kremmodell.getArlista());
-		
+
 		add(makeMenuBar(),BorderLayout.NORTH);
 		add(pane, BorderLayout.CENTER);
 		pane.add("Szolárium", makeTab(szoliInputPanel, szoli, szolitablamodell));
@@ -60,15 +69,16 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		pane.add("Bérlet", makeTab(berletInputPanel, berlet, berletmodell));
 		pane.add("Krém", makeTab(kremInputPanel, krem, kremmodell));
 		pane.add("Üdítő", makeTab(uditoInputPanel, udito, uditomodell));
-		addFunctiontoPanelButton(szoliInputPanel, new szoliFelveszActionListener());
-		addFunctiontoPanelButton(berletInputPanel, new termekFelveszActionListener(berletmodell,berletInputPanel));
-		addFunctiontoPanelButton(kaveInputPanel, new termekFelveszActionListener(kavemodell,kaveInputPanel));
-		addFunctiontoPanelButton(kremInputPanel, new termekFelveszActionListener(kremmodell, kremInputPanel));
-		addFunctiontoPanelButton(uditoInputPanel, new termekFelveszActionListener(uditomodell, uditoInputPanel));	
+		addFunctiontoPanelButton(szoliInputPanel, new szoliFelveszActionListener(), new DeleteActionListener(szolitablamodell));
+		addFunctiontoPanelButton(berletInputPanel, new termekFelveszActionListener(berletmodell,berletInputPanel), new DeleteActionListener(berletmodell));
+		addFunctiontoPanelButton(kaveInputPanel, new termekFelveszActionListener(kavemodell,kaveInputPanel), new DeleteActionListener(kavemodell));
+		addFunctiontoPanelButton(kremInputPanel, new termekFelveszActionListener(kremmodell, kremInputPanel), new DeleteActionListener(kremmodell));
+		addFunctiontoPanelButton(uditoInputPanel, new termekFelveszActionListener(uditomodell, uditoInputPanel), new DeleteActionListener(uditomodell));
 	}
 
-	public void addFunctiontoPanelButton(InputPanel inputpanel, ActionListener e){
-		inputpanel.getButton().addActionListener(e);
+	public void addFunctiontoPanelButton(InputPanel inputpanel,ActionListener felvesz, ActionListener torol){
+		inputpanel.getfelveszButton().addActionListener(felvesz);
+		inputpanel.gettorolButton().addActionListener(torol);
 	}
 
 	protected JComponent makeTab(JPanel inputpanel, JTable table, AbstractTableModel tablemodell) {
@@ -87,52 +97,105 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 	public JComponent makeMenuBar(){
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
-		JMenu open = new JMenu("Open");
-		JMenuItem startTheDay = new JMenuItem("Save");
-		startTheDay.addActionListener(new ActionListener(){
+		JMenuItem open = new JMenuItem("Open");
+		open.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Serializer serializer = new Serializer();
-				try {
-					serializer.writeszolirekordok(szolitablamodell.getSzoliRekordok(), "szoli");
-				
-				serializer.writetermekrekordok(kavemodell.getTermekRekordok(), "kávé");
-				serializer.writetermekrekordok(berletmodell.getTermekRekordok(), "bérlet");
-				serializer.writetermekrekordok(uditomodell.getTermekRekordok(), "udito");
-				serializer.writetermekrekordok(kremmodell.getTermekRekordok(), "krem");
-				} catch (IOException e1) {
-					System.out.println("Hiba a mentés során");
-					e1.printStackTrace();
-					
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("What");
+				fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				int retval = fc.showOpenDialog(open);
+				if (retval==JFileChooser.APPROVE_OPTION){
+					Serializer serializer = new Serializer();
+					File file = fc.getSelectedFile();
+					try {
+						List<List<? extends Record>> openedrecords = serializer.read(file);
+						szolitablamodell.setSzoliRekordok(openedrecords.get(0));
+						kavemodell.setTermekRekordok(openedrecords.get(1));
+						berletmodell.setTermekRekordok(openedrecords.get(2));
+						uditomodell.setTermekRekordok(openedrecords.get(3));
+						kremmodell.setTermekRekordok(openedrecords.get(4));
+					}catch (IOException | ClassNotFoundException e1) {
+						final JPanel panel = new JPanel();
+						JOptionPane.showMessageDialog(panel, "Hiba a megnyitás során!", 
+								"Hiba", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
 				}
-				
-				}
-		});
-		JMenuItem finishTheDay = new JMenuItem("Export to Excel");
-		finishTheDay.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Exportxssl exporter = new Exportxssl();
 			}
 		});
-		fileMenu.add(startTheDay);
-		fileMenu.add(finishTheDay);
+		JMenuItem save = new JMenuItem("Save");
+		save.addActionListener(new ActionListener(){
+			private String filename;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("Where");
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int retval = fc.showSaveDialog(save);
+				if (retval==JFileChooser.APPROVE_OPTION){
+					Serializer serializer = new Serializer();
+					File place = fc.getCurrentDirectory();
+						filename=fc.getSelectedFile().getName();
+					try {
+						List<List<? extends Record>> sv = new ArrayList<List<? extends Record>>();
+						sv.add(szolitablamodell.getSzoliRekordok());
+						sv.add(kavemodell.getTermekRekordok());
+						sv.add(berletmodell.getTermekRekordok());
+						sv.add(uditomodell.getTermekRekordok());
+						sv.add(kremmodell.getTermekRekordok());
+						serializer.write(sv, place, filename);
+					}catch (IOException e1) {
+						final JPanel panel = new JPanel();
+						JOptionPane.showMessageDialog(panel, "Hiba a mentés során", 
+								"Hiba", JOptionPane.ERROR_MESSAGE);
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		JMenuItem exportToExcel = new JMenuItem("Export to Excel");
+		exportToExcel.addActionListener(new ActionListener(){
+			private String filename;
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setDialogTitle("Where");
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int retval = fc.showSaveDialog(save);
+				if (retval==JFileChooser.APPROVE_OPTION){
+					Exportxssl exporter = new Exportxssl();
+					File place = fc.getCurrentDirectory();
+					filename=fc.getSelectedFile().getName();
+						List<List<? extends Record>> sv = new ArrayList<List<? extends Record>>();
+						sv.add(szolitablamodell.getSzoliRekordok());
+						sv.add(kavemodell.getTermekRekordok());
+						sv.add(berletmodell.getTermekRekordok());
+						sv.add(uditomodell.getTermekRekordok());
+						sv.add(kremmodell.getTermekRekordok());
+						exporter.write(sv, place,filename );
+				}
+			}
+		});
+		fileMenu.add(save);
+		fileMenu.add(exportToExcel);
+		fileMenu.add(open);
 		menuBar.add(fileMenu);
 		return menuBar;
 	}
 
 	public Object[] getData(){
-		 Object[] objs = {szolitablamodell, kavemodell, berletmodell, uditomodell, kremmodell};
-		 return objs;
+		Object[] objs = {szolitablamodell, kavemodell, berletmodell, uditomodell, kremmodell};
+		return objs;
 	}
-	
+
 	public class szoliFelveszActionListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String am = (gcalendar.get(Calendar.AM_PM)==0) ? "AM" : "PM";
 			String timeString = String.valueOf(gcalendar.get(Calendar.HOUR)+":"
 					+gcalendar.get(Calendar.MINUTE) +" "+ am);
-			szolitablamodell.addTermekRekord(
+			szolitablamodell.addSzoliRekord(
 					timeString,
 					szoliInputPanel.gettermek(), 
 					szoliInputPanel.getf_n(),
@@ -144,7 +207,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 	}
 
 	public class termekFelveszActionListener implements ActionListener{
-		private InputPanel panel;
+		private TermekInputPanel panel;
 		private TermekTablaModell model;
 		public termekFelveszActionListener(TermekTablaModell model, TermekInputPanel p) {
 			panel = p;
@@ -162,6 +225,18 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		}
 	}
 
+	public class DeleteActionListener implements ActionListener{
+		private TablaModell model;
+		public DeleteActionListener(TablaModell model) {
+			this.model=model;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			model.deleteRekord();
+		}
+	}
+
+	@SuppressWarnings("deprecation")
 	public void createandShowGui(){
 		this.show();
 	}
