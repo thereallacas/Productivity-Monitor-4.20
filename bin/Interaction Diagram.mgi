@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass name="tablemodels.TablaModell" x="112" y="172"/>
+    <CommunicationClass name="datatypes.recordtypes.SzoliRekord" x="770" y="461">
+        <Extension destinationClassName="datatypes.recordtypes.Record"/>
+    </CommunicationClass>
+    <CommunicationClass name="gui.MANDARIN" x="886" y="241"/>
+    <CommunicationClass name="database.Exportxssl" x="988" y="235"/>
+    <CommunicationClass name="database.Exportxssl.HEADER_INDICES_S"
+        x="918" y="19"/>
+    <CommunicationClass name="database.Exportxssl.HEADER_INDICES_T"
+        x="916" y="65"/>
+    <CommunicationClass
+        name="gui.ULTIMATE_USER_INTERFACE.termekFelveszActionListener"
+        x="628" y="185">
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="model" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="panel" kind="Simple"/>
+        <Communication destinationClassName="tablemodels.TermekTablaModell"/>
+    </CommunicationClass>
+    <CommunicationClass name="datatypes.Termek" x="989" y="120"/>
+    <CommunicationClass
+        name="gui.ULTIMATE_USER_INTERFACE.DeleteActionListener" x="88" y="389">
+        <Association destinationClassName="tablemodels.TablaModell"
+            endpointName="model" kind="Simple"/>
+        <Communication destinationClassName="tablemodels.TablaModell"/>
+    </CommunicationClass>
+    <CommunicationClass name="inputpanels.InputPanel" x="901" y="181"/>
+    <CommunicationClass name="datatypes.recordtypes.Record" x="905" y="121"/>
+    <CommunicationClass name="application.Main" x="16" y="199">
+        <Communication destinationClassName="gui.ULTIMATE_USER_INTERFACE">
+            <Point x="44" y="75"/>
+        </Communication>
+    </CommunicationClass>
+    <CommunicationClass name="datatypes.recordtypes.TermekRekord"
+        x="782" y="326">
+        <Extension destinationClassName="datatypes.recordtypes.Record"/>
+    </CommunicationClass>
+    <CommunicationClass name="tablemodels.TermekTablaModell" x="597" y="391">
+        <Extension destinationClassName="tablemodels.TablaModell"/>
+        <Association
+            destinationClassName="datatypes.recordtypes.TermekRekord"
+            endpointName="termekrekordok" kind="Simple"/>
+        <Association destinationClassName="datatypes.Termek"
+            endpointName="arlista" kind="Simple"/>
+        <Communication destinationClassName="datatypes.recordtypes.TermekRekord"/>
+    </CommunicationClass>
+    <CommunicationClass name="inputpanels.TermekInputPanel" x="933" y="361">
+        <Extension destinationClassName="inputpanels.InputPanel"/>
+    </CommunicationClass>
+    <CommunicationClass name="tablemodels.SzoliTablaModell" x="523" y="460">
+        <Extension destinationClassName="tablemodels.TablaModell"/>
+        <Association
+            destinationClassName="datatypes.recordtypes.SzoliRekord"
+            endpointName="szolirekordok" kind="Simple"/>
+        <Communication destinationClassName="datatypes.recordtypes.SzoliRekord"/>
+    </CommunicationClass>
+    <CommunicationClass name="database.Serializer" x="992" y="181"/>
+    <CommunicationClass name="inputpanels.SzoliInputPanel" x="949" y="314">
+        <Extension destinationClassName="inputpanels.InputPanel"/>
+    </CommunicationClass>
+    <CommunicationClass
+        name="gui.ULTIMATE_USER_INTERFACE.szoliFelveszActionListener"
+        x="113" y="461">
+        <Communication destinationClassName="tablemodels.SzoliTablaModell"/>
+    </CommunicationClass>
+    <CommunicationClass name="gui.ULTIMATE_USER_INTERFACE" x="270" y="58">
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="berletInputPanel" kind="Simple"/>
+        <Association destinationClassName="inputpanels.SzoliInputPanel"
+            endpointName="szoliInputPanel" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="uditoInputPanel" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="kavemodell" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="fodraszatmodell" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="kremInputPanel" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="uditomodell" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="kremmodell" kind="Simple"/>
+        <Association destinationClassName="tablemodels.SzoliTablaModell"
+            endpointName="szolitablamodell" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="berletmodell" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="kaveInputPanel" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="fordaszatInputPanel" kind="Simple"/>
+        <Communication destinationClassName="tablemodels.TablaModell"/>
+        <Communication destinationClassName="tablemodels.TermekTablaModell">
+            <Point x="380" y="333"/>
+        </Communication>
+        <Communication destinationClassName="tablemodels.SzoliTablaModell">
+            <Point x="269" y="382"/>
+        </Communication>
+    </CommunicationClass>
+</ClassDiagram>

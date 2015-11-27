@@ -1,0 +1,3 @@
+arlista
+Férfi vágás	1460
+Férfi mosás,vágás,szárítás	1880

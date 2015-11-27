@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="tablemodels.TablaModell" x="1075" y="523">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="datatypes.recordtypes.SzoliRekord" x="1317" y="328">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="datatypes.recordtypes.Record"/>
+    </Class>
+    <Class name="gui.MANDARIN" x="1026" y="26">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="database.Exportxssl" x="1094" y="206">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="database.Exportxssl.HEADER_INDICES_S" x="1248" y="10">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="database.Exportxssl.HEADER_INDICES_T" x="1117" y="19">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class
+        name="gui.ULTIMATE_USER_INTERFACE.termekFelveszActionListener"
+        x="98" y="391">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="model" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="panel" kind="Simple"/>
+        <Communication destinationClassName="tablemodels.TermekTablaModell"/>
+    </Class>
+    <Class name="datatypes.Termek" x="51" y="507">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="gui.ULTIMATE_USER_INTERFACE.DeleteActionListener"
+        x="1034" y="626">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="tablemodels.TablaModell"
+            endpointName="model" kind="Simple"/>
+        <Communication destinationClassName="tablemodels.TablaModell"/>
+    </Class>
+    <Class name="inputpanels.InputPanel" x="826" y="395">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="datatypes.recordtypes.Record" x="1337" y="475">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="application.Main" x="1055" y="80">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="gui.ULTIMATE_USER_INTERFACE"/>
+    </Class>
+    <Class name="datatypes.recordtypes.TermekRekord" x="1323" y="667">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="datatypes.recordtypes.Record"/>
+    </Class>
+    <Class name="tablemodels.TermekTablaModell" x="131" y="655">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="tablemodels.TablaModell">
+            <Point x="848" y="681"/>
+            <Point x="844" y="553"/>
+        </Extension>
+        <Association
+            destinationClassName="datatypes.recordtypes.TermekRekord"
+            endpointName="termekrekordok" kind="Simple"/>
+        <Association destinationClassName="datatypes.Termek"
+            endpointName="arlista" kind="Simple"/>
+        <Communication destinationClassName="datatypes.recordtypes.TermekRekord"/>
+    </Class>
+    <Class name="inputpanels.TermekInputPanel" x="417" y="360">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="inputpanels.InputPanel"/>
+    </Class>
+    <Class name="tablemodels.SzoliTablaModell" x="978" y="349">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="tablemodels.TablaModell">
+            <Point x="1052" y="546"/>
+        </Extension>
+        <Association
+            destinationClassName="datatypes.recordtypes.SzoliRekord"
+            endpointName="szolirekordok" kind="Simple"/>
+        <Communication destinationClassName="datatypes.recordtypes.SzoliRekord"/>
+    </Class>
+    <Class name="database.Serializer" x="1096" y="133">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="inputpanels.SzoliInputPanel" x="790" y="107">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="inputpanels.InputPanel"/>
+    </Class>
+    <Class name="gui.ULTIMATE_USER_INTERFACE.szoliFelveszActionListener"
+        x="808" y="27">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="tablemodels.SzoliTablaModell"/>
+    </Class>
+    <Class name="gui.ULTIMATE_USER_INTERFACE" x="426" y="46">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="berletInputPanel" kind="Simple"/>
+        <Association destinationClassName="inputpanels.SzoliInputPanel"
+            endpointName="szoliInputPanel" kind="Simple"/>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="uditoInputPanel" kind="Simple">
+            <Point x="764" y="388"/>
+            <Point x="678" y="497"/>
+        </Association>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="kavemodell" kind="Simple">
+            <Point x="33" y="90"/>
+            <Point x="28" y="750"/>
+        </Association>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="fodraszatmodell" kind="Simple">
+            <Point x="337" y="529"/>
+            <Point x="337" y="856"/>
+            <Point x="33" y="857"/>
+        </Association>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="kremInputPanel" kind="Simple">
+            <Point x="310" y="381"/>
+            <Point x="512" y="577"/>
+        </Association>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="uditomodell" kind="Simple"/>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="kremmodell" kind="Simple">
+            <Point x="682" y="266"/>
+            <Point x="686" y="666"/>
+        </Association>
+        <Association destinationClassName="tablemodels.SzoliTablaModell"
+            endpointName="szolitablamodell" kind="Simple">
+            <Point x="1046" y="92"/>
+        </Association>
+        <Association
+            destinationClassName="tablemodels.TermekTablaModell"
+            endpointName="berletmodell" kind="Simple">
+            <Point x="29" y="89"/>
+            <Point x="29" y="602"/>
+        </Association>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="kaveInputPanel" kind="Simple">
+            <Point x="697" y="92"/>
+            <Point x="698" y="398"/>
+        </Association>
+        <Association destinationClassName="inputpanels.TermekInputPanel"
+            endpointName="fordaszatInputPanel" kind="Simple">
+            <Point x="744" y="302"/>
+        </Association>
+        <Communication destinationClassName="tablemodels.TablaModell"/>
+        <Communication destinationClassName="tablemodels.TermekTablaModell"/>
+        <Communication destinationClassName="tablemodels.SzoliTablaModell"/>
+    </Class>
+</ClassDiagram>
