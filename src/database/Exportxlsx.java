@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.management.openmbean.OpenDataException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.apache.poi.xssf.usermodel.*;
@@ -110,6 +112,8 @@ public class Exportxlsx{
 		{
 			DateFormat dtformat = new SimpleDateFormat("yyyy.MM.dd");
 			Date date = new Date();
+			if (sv.size()>6)
+				throw new WriteAbortedException(filename, new Exception());
 			XSSFWorkbook napiForg = create(sv);
 			//Write the workbook in file system
 			FileOutputStream out = new FileOutputStream(new File(place, dtformat.format(date)+filename+".xlsx"));
@@ -193,7 +197,7 @@ public class Exportxlsx{
 				XSSFRow row = sheets[i].createRow(r);
 				row.createCell(HEADER_INDICES_T.TIME.getValue()).setCellValue(t.getTime());
 				row.createCell(HEADER_INDICES_T.TERMEK.getValue()).setCellValue(t.getTermeknev());
-				row.createCell(HEADER_INDICES_T.EGYSEGAR.getValue()).setCellValue(t.getEgysegar());
+				row.createCell(HEADER_INDICES_T.EGYSEGAR.getValue()).setCellValue(t.getFizetendo());
 				row.createCell(HEADER_INDICES_T.ADOTT.getValue()).setCellValue(t.getFizetett());
 				r++;
 			}

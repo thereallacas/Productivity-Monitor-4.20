@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.WriteAbortedException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class Serializer {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public void write(List<List<? extends Record>> recordstosave, File place, String name) throws IOException{
+		if (recordstosave.size()>6)
+			throw new WriteAbortedException(name, new Exception());
 		DateFormat dtformat = new SimpleDateFormat("yyyy.MM.dd");
 		Date date = new Date();
 		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(place, dtformat.format(date)+ name + ".mandarin")));

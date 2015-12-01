@@ -30,7 +30,7 @@ import tablemodels.TermekTablaModell;
  * Creates the soul of the application: The Ultimate User Interface
  * Extends from JFrame, and provides the necessary functions to input 
  * data to the database. It has various attributes including {@link tablemodels.TablaModell}
- * , {@link inputpanels.InputPanel}, JTables and a Gregorian Calendar!
+ * , {@link inputpanels.InputPanel}, JTables, and much more!
  * It has functions to create itself and add the various elements to the Frame. 
  */
 public class ULTIMATE_USER_INTERFACE extends JFrame {
@@ -80,9 +80,6 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 	/** The table for the database */
 	private JTable berlet, krem, kave, udito, szoli, fodraszat;
 	
-	/** The gcalendar. */
-	private GregorianCalendar gcalendar = new GregorianCalendar();
-
 	/**
 	 * Instantiates a new ultimate user interface.
 	 * 
@@ -274,10 +271,28 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 				}
 			}
 		});
+		JMenuItem total = new JMenuItem("Total");
+		total.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<List<? extends Record>> sv = new ArrayList<List<? extends Record>>();
+				sv.add(szolitablamodell.getSzoliRekordok());
+				sv.add(kavemodell.getTermekRekordok());
+				sv.add(berletmodell.getTermekRekordok());
+				sv.add(uditomodell.getTermekRekordok());
+				sv.add(kremmodell.getTermekRekordok());
+				sv.add(fodraszatmodell.getTermekRekordok());
+				Total t = new Total();
+				t.addlists(sv);
+				t.createandShowGui();
+			}
+		});
 		fileMenu.add(save);
 		fileMenu.add(exportToExcel);
 		fileMenu.add(open);
 		menuBar.add(fileMenu);
+		menuBar.add(total);
 		return menuBar;
 	}
 
@@ -293,6 +308,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			GregorianCalendar gcalendar = new GregorianCalendar();
 			String am = (gcalendar.get(Calendar.AM_PM)==0) ? "AM" : "PM";
 			String timeString = String.valueOf(gcalendar.get(Calendar.HOUR)+":"
 					+gcalendar.get(Calendar.MINUTE) +" "+ am);
@@ -336,6 +352,7 @@ public class ULTIMATE_USER_INTERFACE extends JFrame {
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			GregorianCalendar gcalendar = new GregorianCalendar();
 			String am = (gcalendar.get(Calendar.AM_PM)==0) ? "AM" : "PM";
 			String timeString = String.valueOf(gcalendar.get(Calendar.HOUR)+":"
 					+gcalendar.get(Calendar.MINUTE) +" "+ am);

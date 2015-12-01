@@ -202,7 +202,7 @@ public class TermekTablaModell extends AbstractTableModel implements TablaModell
 			switch(columns.get(columnIndex)) {
 			case "TIME": return purchase.getTime();
 			case "TERMÉKNÉV": return purchase.getTermeknev();
-			case "FIZETENDO": return purchase.getEgysegar();
+			case "FIZETENDO": return purchase.getFizetendo();
 			default: return purchase.getFizetett();
 			}
 		}
@@ -231,7 +231,7 @@ public class TermekTablaModell extends AbstractTableModel implements TablaModell
 			switch(columns.get(columnIndex)) {
 			case "TIME": purchase.setTime((String)value); break;
 			case "TERMÉKNÉV": purchase.setTermeknev((String)value); break;
-			case "FIZETENDO": purchase.setEgysegar((String)value); break;
+			case "FIZETENDO": purchase.setFizetendo((String)value); break;
 			case "FIZETETT": purchase.setFizetett((String)value); break;
 			}
 		}

@@ -67,7 +67,7 @@ public class SzoliTablaModell extends AbstractTableModel implements TablaModell{
 		 * @param szolirekordok the new szoli rekordok
 		 */
 		@SuppressWarnings("unchecked")
-		public void setSzoliRekordok(List<? extends Record> szolirekordok){
+		public void setSzoliRekordok(List<? extends Record> szolirekordok)throws ClassCastException{
 			if ( (szolirekordok != null) && (szolirekordok.size() > 0) ) {
 				if ( (szolirekordok.get(0) != null) && !(szolirekordok.get(0) instanceof SzoliRekord) ) {
 					final JPanel panel = new JPanel();

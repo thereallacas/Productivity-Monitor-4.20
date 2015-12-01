@@ -12,7 +12,7 @@ import java.sql.DatabaseMetaData;
  * the interface Serializable for the list to be good 
  * for consume by the {@link database.Serializer}
  */
-public class Record implements Serializable{
+public abstract class Record implements Serializable{
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

@@ -40,7 +40,7 @@ public class TermekRekord extends Record implements Serializable{
 	 * @param fizetett the paid price
 	 */
 	public TermekRekord(String time, String termeknev, String egysegar, String fizetett){
-		setTime(time);setTermeknev(termeknev); setEgysegar(egysegar);setFizetett(fizetett);
+		setTime(time);setTermeknev(termeknev); setFizetendo(egysegar);setFizetett(fizetett);
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class TermekRekord extends Record implements Serializable{
 	 *
 	 * @return the egysegar
 	 */
-	public String getEgysegar() {
+	public String getFizetendo() {
 		return fizetendo;
 	}
 
@@ -93,7 +93,7 @@ public class TermekRekord extends Record implements Serializable{
 	 *
 	 * @param fizetendo the new egysegar
 	 */
-	public void setEgysegar(String fizetendo) {
+	public void setFizetendo(String fizetendo) {
 		this.fizetendo = fizetendo;
 	}
 
